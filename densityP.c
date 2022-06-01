@@ -1,5 +1,6 @@
 //CODICE PARALLELO
 
+#define _GNU_SOURCE
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
@@ -7,6 +8,7 @@
 #include <stdbool.h>
 #include <time.h>
 
+#include <sched.h>
 #include <omp.h>
 #include "mpi.h"
 
@@ -100,7 +102,7 @@ float computePotential(int i_part, struct particlesDistribution pd, int N){
 int main(int argc, char *argv[])
 {
 	// PERFORMANCE variables
-  	double start_time, end_time, t;  
+	double start_time, end_time, t;  
 
     // INPUT FILE variables
     FILE *fptr;
@@ -113,6 +115,9 @@ int main(int argc, char *argv[])
     int	numprocs;
     int ROOT = 0;
 
+    int len;
+    char hostname[MPI_MAX_PROCESSOR_NAME];
+
     MPI_Init(&argc, &argv); // initializeMPI
 
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs); // tells to MPIprocesses "HOW MUCH we are"
@@ -124,6 +129,10 @@ int main(int argc, char *argv[])
 	
 
     if(argc > 1){
+
+   	MPI_Get_processor_name(hostname, &len);
+//	   printf ("Number of tasks= %d My rank= %d Running on %s\n", numprocs,rank,hostname);
+
 		if(rank==ROOT)
 		{	
     		start_time = MPI_Wtime();
@@ -278,11 +287,31 @@ int main(int argc, char *argv[])
 		
 			// OPENMP + POTENTIALS
 			if(rank == ROOT){
-				#pragma omp parallel num_threads(8)
+				#pragma omp parallel num_threads(8) proc_bind(close)
 				{
+   #pragma omp master
+    {
+      char *proc_bind_names[] = { "false (no binding)",
+				  "true",
+				  "master",
+				  "close",
+				  "spread" };
+      
+      
+      // get the current binding
+      int binding = omp_get_proc_bind();
+
+//      printf(" proc bind is set to \"%s\"\n", proc_bind_names[binding] );
+    }
+
 					int my_thread_id = omp_get_thread_num();  // private variable	                                           									      			    		
-			    		#pragma omp single		
-								fptr = fopen("potentials.txt","w");
+					int cpu_num = sched_getcpu();
+				        int place   = omp_get_place_num();
+				
+					//printf("Place is %d, my CPU is %d, my omp thread is %d, my mpi thread is %d\n" ,place, cpu_num, my_thread_id, rank);
+			    	
+					#pragma omp single		
+						fptr = fopen("potentials.txt","w");
 				
 					    	if(fptr == NULL)
 					    	{
@@ -312,7 +341,7 @@ int main(int argc, char *argv[])
 			{			
 				end_time = MPI_Wtime();
 				t = end_time - start_time;
-				printf ( "\n# walltime on processor %i : %10.8f \n", rank, t);
+				printf ( "%10.8f ", t);
 			}
 
 	}
@@ -334,3 +363,4 @@ int main(int argc, char *argv[])
     MPI_Finalize();
 	return 0;
 }
+
