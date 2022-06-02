@@ -3,11 +3,11 @@ unlink tempiN.txt
 module load openmpi-4.1.1+gnu-9.3.0
 export OMP_PLACES=threads
 mpicc -fopenmp densityP.c -o densityP.o -lm
-for i in {1..100}
+for j in {1..1000}
 do
-	for i in {2..20..2}
+	for i in {2..50..2}
 	do
-   		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityP.o $i 2 >> tempiN.txt	
+   		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityP.o $i $i >> tempiN.txt	
 	done
 	echo >> tempiN.txt
 done

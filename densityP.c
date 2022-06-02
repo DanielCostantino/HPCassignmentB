@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
 			{
 				//printf("\nNO INPUT-FILE: let's generate the particlesDistribution randomly...\n");
 				//GENERATE THE PARTICLES DISTRIBUTION
-				pd.numParts = rand()%(int)(pow(atoi(argv[1]), 3)); //generated randomly between 0 and N^3
+				pd.numParts = 100; //rand()%(int)(pow(atoi(argv[1]), 3)); //generated randomly between 0 and N^3
 				//printf("NumParts:%d\n", pd.numParts);
 				pd.partsPositions = (float*)malloc(pd.numParts * 3 * sizeof(float));  // ?? sto rompendo questo malloc qua ??		
 
