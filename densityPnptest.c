@@ -18,15 +18,15 @@
 
 // COMMAND LINE:
 // echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-// cd /mnt/c/Users/black/OneDrive/BackUp/Master\ Archive/Insegnamenti/HPC/Assignment\ B
-// mpicc -fopenmp densityP.c -o densityP.o -lm
-// mpirun -np 1 densityP.o
-// mpirun -np 1 densityP.o 2 2 input.bin
-// mpirun -np 2 densityP.o 2 2 input.bin
-// mpirun -np 2 densityP.o 2 2
+// cd /mnt/c/Users/black/Documents/GitHub/HPCassignmentB
+// mpicc -fopenmp densityPnptest.c -o densityPnptest.o -lm
+// mpirun -np 1 densityPnptest.o
+// mpirun -np 1 densityPnptest.o 2 2 input.bin
+// mpirun -np 8 densityPnptest.o 2 2 input.bin
+// mpirun -np 8 densityPnptest.o 2 2
 
-// mpirun --mca pml ob1 --mca btl tcp,self -np 4 densityP.o 2 2 input.bin  //pml -> ob1; btl -> tcp
-// mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 2 densityP.o 2 2 //pml -> ucx; btl -> tcp
+// mpirun --mca pml ob1 --mca btl tcp,self -np 8 densityPnptest.o 2 2 input.bin  //pml -> ob1; btl -> tcp
+// mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityPnptest.o 2 2 //pml -> ucx; btl -> tcp
 
 int rank;
 
@@ -80,7 +80,7 @@ float computeDensity(int coord_i, int r, float volume_sfera, struct particlesDis
 	}
 	//printf("\nGridPoint-%d has nPart:%d\n",coord_i, nPart);
 	// calcolare il numero di particelle che cadono nella sfera di raggio R centrata in coord e dividere per il VOLUME della sfera = 4/3*pi*R^3
-	return (nPart/volume_sfera);
+	return nPart/volume_sfera;
 }
 
 float eD(int i, int j, struct particlesDistribution pd, int N){
@@ -155,12 +155,18 @@ int main(int argc, char *argv[])
 			{
 				//printf("\nNO INPUT-FILE: let's generate the particlesDistribution randomly...\n");
 				//GENERATE THE PARTICLES DISTRIBUTION
-				pd.numParts = rand()%(int)(pow(atoi(argv[1]), 3)); //generated randomly between 0 and N^3
+				pd.numParts = atoi(argv[2]); // <--- NpTest | rand()%(int)(pow(atoi(argv[1]), 3)); //generated randomly between 0 and N^3
 				//printf("NumParts:%d\n", pd.numParts);
 				pd.partsPositions = (float*)malloc(pd.numParts * 3 * sizeof(float));  // ?? sto rompendo questo malloc qua ??		
 
-			    for(int i=0; i < pd.numParts*3; i++)
-			    	*(pd.partsPositions+i) = (float)rand()/(float)((unsigned)RAND_MAX + 1);
+			    for(int i=0; i < pd.numParts*3; i++){					
+			    	*(pd.partsPositions+i) = ((float)rand())/((float)((unsigned)RAND_MAX + 1));
+			    	//printf("*(pd.partsPositions+i)=%f\n", *(pd.partsPositions+i));
+				}
+			    /*/print particles distribution
+			    for(int i=0; i < pd.numParts; i++)
+					printf("Part-%d: %f, %f, %f\n", i, *(pd.partsPositions+i*3), *(pd.partsPositions+i*3+1), *(pd.partsPositions+i*3+2));
+				*/
 		    }
 
 	    	if(argc > 3) // Take the distribution from the INPUT FILE
@@ -236,15 +242,21 @@ int main(int argc, char *argv[])
 		    }
 			MPI_Bcast(pd.partsPositions, pd.numParts*3, MPI_FLOAT, ROOT, MPI_COMM_WORLD);
 			//for(int i=0; i < pd.numParts; i++)
-			//	printf("Part-%d: %f, %f,%f\n", i, *(pd.partsPositions+i*3), *(pd.partsPositions+i*3+1), *(pd.partsPositions+i*3+2));
+			//	printf("Part-%d: %f, %f, %f\n", i, *(pd.partsPositions+i*3), *(pd.partsPositions+i*3+1), *(pd.partsPositions+i*3+2));
 
 			//compute DENSITIES
 			//Sphere volume
-			float volume_sfera = (4*M_PI*pow(atoi(argv[2]), 3))/3;
-			//printf("\nVolume_sfera: %f\n", volume_sfera);
 
+			float radius = atoi(argv[1])*sqrt(2*pow(atoi(argv[1]),2))*(1.0/cbrt(atoi(argv[2]))); 
+			float volume_sfera = (4*M_PI*pow(radius,3))/3; 
+			//printf("\nVolume_sfera: %f\n", volume_sfera);
+			if(rank==ROOT){
+				printf("radius: %f\n", radius);
+				printf("volume_sfera: %f\n", volume_sfera);
+			}
+			//printf("g.numGrid_points=%d\n", g.numGrid_points);
 			for(int i=0; i < g.numGrid_points; i++)
-				*(g.grid+i) = computeDensity(i, atoi(argv[2]), volume_sfera, pd, atoi(argv[1]), g.numGrid_points);
+				*(g.grid+i) = computeDensity(i, radius, volume_sfera, pd, atoi(argv[1]), g.numGrid_points);
 							//computeDensity(coord, raggio, volume_sfera, pd.partsPositions, N, g.numGrid_points)
 
 			/*/print the grid
@@ -289,54 +301,56 @@ int main(int argc, char *argv[])
 			if(rank == ROOT){
 				#pragma omp parallel num_threads(8) proc_bind(close)
 				{
-   #pragma omp master
-    {
-      char *proc_bind_names[] = { "false (no binding)",
-				  "true",
-				  "master",
-				  "close",
-				  "spread" };
-      
-      
-      // get the current binding
-      int binding = omp_get_proc_bind();
+			    /*#pragma omp master
+			    {
+			      char *proc_bind_names[] = { "false (no binding)",
+							  "true",
+							  "master",
+							  "close",
+							  "spread" };
+			      
+			      
+			      // get the current binding
+			      int binding = omp_get_proc_bind();
 
-//      printf(" proc bind is set to \"%s\"\n", proc_bind_names[binding] );
-    }
+				//printf(" proc bind is set to \"%s\"\n", proc_bind_names[binding] );
+			    }
 
-					int my_thread_id = omp_get_thread_num();  // private variable	                                           									      			    		
-					int cpu_num = sched_getcpu();
-				        int place   = omp_get_place_num();
-				
-					//printf("Place is %d, my CPU is %d, my omp thread is %d, my mpi thread is %d\n" ,place, cpu_num, my_thread_id, rank);
-			    	
-					#pragma omp single		
-						fptr = fopen("potentials.txt","w");
-				
-					    	if(fptr == NULL)
-					    	{
-					      		printf("Error!");   
-					      		exit(1);             
-					   		}
-	
-							#pragma omp single
-					   			fprintf(fptr,"%d\n\n", pd.numParts); // Np
-							
-					   		#pragma omp for schedule(static)
-					   		for(int i = 0; i < pd.numParts; i++)
-					   		{
-					   			//computePotential(particella, distribuzionePart, N)
-					   			//printf("\nPOTENZIALE TOTALE:\t%f\n", computePotential(i, pd, atoi(argv[1])));
-					   			//printf("interation_%d taken from thread-%d\n", i, my_thread_id);
-					   			fprintf(fptr, "%f,%f,%f,%f\n", (*pd.partsPositions+i)*atoi(argv[1]), (*pd.partsPositions+i+1)*atoi(argv[1]), (*pd.partsPositions+i+2)*atoi(argv[1]), computePotential(i, pd, atoi(argv[1])));
-					   		}
-	
-					   		#pragma omp single
-					   			fclose(fptr);
+				int my_thread_id = omp_get_thread_num();  // private variable	                                           									      			    		
+				int cpu_num = sched_getcpu();
+			    int place   = omp_get_place_num();
+			
+				//printf("Place is %d, my CPU is %d, my omp thread is %d, my mpi thread is %d\n" ,place, cpu_num, my_thread_id, rank);
+		    	*/
+				#pragma omp single		
+					fptr = fopen("potentials.txt","w");
+			
+				    	if(fptr == NULL)
+				    	{
+				      		printf("Error!");   
+				      		exit(1);             
+				   		}
+
+						#pragma omp single
+				   			fprintf(fptr,"%d\n\n", pd.numParts); // Np
+						
+				   		#pragma omp for schedule(static)
+				   		for(int i = 0; i < pd.numParts; i++)
+				   		{
+				   			//computePotential(particella, distribuzionePart, N)
+				   			//printf("\nPOTENZIALE TOTALE:\t%f\n", computePotential(i, pd, atoi(argv[1])));
+				   			//printf("interation_%d taken from thread-%d\n", i, my_thread_id);
+				   			fprintf(fptr, "%f,%f,%f,%f\n", (*pd.partsPositions+i)*atoi(argv[1]), (*pd.partsPositions+i+1)*atoi(argv[1]), (*pd.partsPositions+i+2)*atoi(argv[1]), computePotential(i, pd, atoi(argv[1])));
+				   		}
+
+				   		#pragma omp single
+				   			fclose(fptr);
 	
     				//printf( "\tGreetings from thread num %d\n", my_thread_id);			
 				}
 			}
+
+			//timing performance
 			if(rank==ROOT)
 			{			
 				end_time = MPI_Wtime();
