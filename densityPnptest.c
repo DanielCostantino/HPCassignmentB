@@ -15,6 +15,7 @@
 //gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04)
 
 //ssh ct1-005.area.trieste.it -l costa
+//github_token: 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
 
 // COMMAND LINE:
 // echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
