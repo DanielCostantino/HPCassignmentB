@@ -16,6 +16,7 @@
 
 //ssh ct1-005.area.trieste.it -l costa
 //github_token: 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
+//github_token2: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
 
 // COMMAND LINE:
 // echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
