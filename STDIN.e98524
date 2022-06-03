@@ -1,0 +1,200 @@
+loading dependency gnu/9.3.0
+loading dependency numactl/2.0.13
+loading dependency hwloc/2.2.0
+[ct1pg-gnode001:44129] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+[ct1pg-gnode001:44132] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:44129] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+[ct1pg-gnode001:44131] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:44131] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:44132] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44125] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[21189,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------
+[ct1pg-gnode001:44153] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:44153] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[ct1pg-gnode001:44146] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44146] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44146] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44146] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[21226,1],6]
+  Exit code:    1
+--------------------------------------------------------------------------
+[ct1pg-gnode001:44184] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:44184] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[ct1pg-gnode001:44177] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44177] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:44177] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:44177] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[21001,1],4]
+  Exit code:    1
+--------------------------------------------------------------------------
+[ct1pg-gnode001:08429] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+[ct1pg-gnode001:08428] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08428] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+[ct1pg-gnode001:08431] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08431] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08429] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08423] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[56959,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------
+[ct1pg-gnode001:08469] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+[ct1pg-gnode001:08468] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08468] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+[ct1pg-gnode001:08470] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08470] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08469] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08455] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[57247,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------
+[ct1pg-gnode001:08586] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08586] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1801
+[ct1pg-gnode001:08577] PMIX ERROR: UNREACHABLE in file ptl_tcp_component.c at line 1849
+[ct1pg-gnode001:08583] OPAL ERROR: Unreachable in file pmix3x_client.c at line 112
+*** An error occurred in MPI_Init
+*** on a NULL communicator
+*** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+***    and potentially your MPI job)
+[ct1pg-gnode001:08583] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[57113,1],6]
+  Exit code:    1
+--------------------------------------------------------------------------
+=>> PBS: job killed: walltime 7256 exceeded limit 7200
