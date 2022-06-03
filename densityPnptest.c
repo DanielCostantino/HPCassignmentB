@@ -1,4 +1,4 @@
-//CODICE PARALLELO
+// CODICE PARALLELO
 
 #define _GNU_SOURCE
 #define _USE_MATH_DEFINES
@@ -12,11 +12,11 @@
 #include <omp.h>
 #include "mpi.h"
 
-//gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04)
+// gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04)
 
-//ssh ct1-005.area.trieste.it -l costa
-//github_token: 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
-//github_token2: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
+// ssh ct1-005.area.trieste.it -l costa
+// github_token: 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
+// github_token2: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
 
 // COMMAND LINE:
 // echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
