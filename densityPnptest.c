@@ -250,10 +250,10 @@ int main(int argc, char *argv[])
 			float radius = atoi(argv[1])*sqrt(2*pow(atoi(argv[1]),2))*(1.0/cbrt(atoi(argv[2]))); 
 			float volume_sfera = (4*M_PI*pow(radius,3))/3; 
 			//printf("\nVolume_sfera: %f\n", volume_sfera);
-			if(rank==ROOT){
+			/*if(rank==ROOT){
 				printf("radius: %f\n", radius);
 				printf("volume_sfera: %f\n", volume_sfera);
-			}
+			}*/
 			//printf("g.numGrid_points=%d\n", g.numGrid_points);
 			for(int i=0; i < g.numGrid_points; i++)
 				*(g.grid+i) = computeDensity(i, radius, volume_sfera, pd, atoi(argv[1]), g.numGrid_points);

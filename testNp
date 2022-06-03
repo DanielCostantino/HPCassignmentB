@@ -1,14 +1,14 @@
 #!/bin/bash
-unlink tempiN.txt
+unlink tempiNp.txt
 module load openmpi-4.1.1+gnu-9.3.0
 export OMP_PLACES=threads
 mpicc -fopenmp densityPnptest.c -o densityPnptest.o -lm
-for j in {1..1000}
+for j in {1..100}
 do
-	for i in {1..1000..2}
+	for i in {1..250}
 	do
-   		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityPnptest.o 10 $i >> tempiNp.txt	
+   		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityPnptest.o 10 $i*2 >> tempiNp.txt	
 	done
 	echo >> tempiNp.txt
 done
-echo "End testN!"
+echo "End testNp!"

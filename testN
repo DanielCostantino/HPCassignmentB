@@ -5,7 +5,7 @@ export OMP_PLACES=threads
 mpicc -fopenmp densityP.c -o densityP.o -lm
 for j in {1..1000}
 do
-	for i in {2..50..2}
+	for i in {2..20..2}
 	do
    		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityP.o $i $i >> tempiN.txt	
 	done
