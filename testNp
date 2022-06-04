@@ -5,9 +5,9 @@ export OMP_PLACES=threads
 mpicc -fopenmp densityPnptest.c -o densityPnptest.o -lm
 for j in {1..100}
 do
-	for i in {1..250}
+	for i in {1..50}
 	do
-   		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityPnptest.o 10 $i*2 >> tempiNp.txt	
+   		mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 8 densityPnptest.o 10 $i*10 >> tempiNp.txt	
 	done
 	echo >> tempiNp.txt
 done
