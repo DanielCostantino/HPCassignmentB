@@ -15,7 +15,7 @@
 // gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04)
 
 // ssh ct1-005.area.trieste.it -l costa
-// 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
+// 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
 
 // COMMAND LINE:
 // echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
