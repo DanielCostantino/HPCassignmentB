@@ -18,7 +18,7 @@
 
 // COMMAND LINE:
 // echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-// cd /mnt/c/Users/black/OneDrive/BackUp/Master\ Archive/Insegnamenti/HPC/Assignment\ B
+// cd /mnt/c/Users/black/Documents/GitHub/HPCassignmentB 
 // mpicc -fopenmp densityP.c -o densityP.o -lm
 // mpirun -np 1 densityP.o
 // mpirun -np 1 densityP.o 2 2 input.bin
@@ -89,13 +89,12 @@ float eD(int i, int j, struct particlesDistribution pd, int N){
 
 float computePotential(int i_part, struct particlesDistribution pd, int N){
 	float p = 0;
-	float ed = 0;
 
 	for(int i=0; i < pd.numParts; i++)
 		if(i!=i_part)
 			p+= 1/eD(i, i_part, pd, N);
-		//printf("\nDistanza:\t%f",eD(i, i_part, pd, N));		
-		//printf("\nPart-%d con potenziale p_%d:\t%f", i_part, i, ed);				
+			//printf("\nDistanza:\t%f",eD(i, i_part, pd, N));		
+			//printf("\nPart-%d con potenziale p_%d:\t%f", i_part, i, p);				
 	return p;
 }
 
@@ -153,7 +152,7 @@ int main(int argc, char *argv[])
 		{		
 			if(argc == 3) // NO INPUT-FILE!!!
 			{
-				//printf("\nNO INPUT-FILE: let's generate the particlesDistribution randomly...\n");
+				printf("\nNO INPUT-FILE: let's generate the particlesDistribution randomly...\n");
 				//GENERATE THE PARTICLES DISTRIBUTION
 				pd.numParts = 100; //rand()%(int)(pow(atoi(argv[1]), 3)); //generated randomly between 0 and N^3
 				//printf("NumParts:%d\n", pd.numParts);
@@ -168,7 +167,7 @@ int main(int argc, char *argv[])
 	    		//READING from INPUT FILE if it doesnt exist than CREATE IT
 	    		if(fptr = fopen(argv[3],"rb")){
 				    // READ the INPUT FILE:
-			    	//printf("\nREADING...\n");
+			    	printf("\nREADING INPUT-FILE...\n");
 			    	int nPart;
 			    	float coords[3];
 			    	// fread(addressData, sizeData, numbersData, pointerToFile);
