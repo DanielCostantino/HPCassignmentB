@@ -9,4 +9,6 @@ mpicc -fopenmp density.c -o density.o -lm
   
 RUN:  
 ----
-mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 4 density.o 2 2
+mpirun --mca pml ucx --mca btl tcp,self --map-by node -np 4 density.o 2 2  
+  
+NOTA: fraction between MPI processes and grid points (N^3) must to be an integer (workbalance).
